@@ -1,0 +1,77 @@
+# Parent class: Smartphone
+class Smartphone:
+    def __init__(self, brand, model, color, battery_life):
+        self.brand = brand
+        self.model = model
+        self.color = color
+        self.battery_life = battery_life
+
+    def turn_on(self):
+        print(f"The {self.brand} {self.model} is now ON.")
+
+    def make_call(self, number):
+        print(f"Calling {number} from {self.model}...")
+
+    def charge(self, hours):
+        self.battery_life += hours
+        print(f"Charging {self.model}. Battery life is now {self.battery_life} hours.")
+
+# Child class: SmartphoneWithCamera (inherits from Smartphone)
+class SmartphoneWithCamera(Smartphone):
+    def __init__(self, brand, model, color, battery_life, camera_resolution):
+        super().__init__(brand, model, color, battery_life)
+        self.camera_resolution = camera_resolution
+
+    def take_photo(self):
+        print(f"Taking a photo with the {self.camera_resolution}MP camera of {self.model}.")
+
+# Creating instances of both classes
+phone = Smartphone("Samsung", "Galaxy S21", "Phantom Gray", 20)
+smartphone_with_camera = SmartphoneWithCamera("Apple", "iPhone 13 Pro", "Silver", 25, 12)
+
+# Interacting with both objects
+phone.turn_on()
+phone.make_call("123-456-7890")
+phone.charge(5)
+
+smartphone_with_camera.turn_on()
+smartphone_with_camera.make_call("987-654-3210")
+smartphone_with_camera.charge(3)
+smartphone_with_camera.take_photo()
+
+
+#Activity 2
+
+# Parent class: Vehicle
+class Vehicle:
+    def move(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+# Car class (inherits from Vehicle)
+class Car(Vehicle):
+    def move(self):
+        print("Driving 🚗")
+
+# Plane class (inherits from Vehicle)
+class Plane(Vehicle):
+    def move(self):
+        print("Flying ✈️")
+
+# Boat class (inherits from Vehicle)
+class Boat(Vehicle):
+    def move(self):
+        print("Sailing ⛵")
+
+# Function to demonstrate polymorphism
+def vehicle_move(vehicle):
+    vehicle.move()
+
+# Creating instances of vehicles
+car = Car()
+plane = Plane()
+boat = Boat()
+
+# Demonstrating polymorphism
+vehicle_move(car)   # Output: Driving 🚗
+vehicle_move(plane) # Output: Flying ✈️
+vehicle_move(boat)  # Output: Sailing ⛵
